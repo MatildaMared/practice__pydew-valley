@@ -60,6 +60,10 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
+    def get_status(self):
+        if self.direction.magnitude() == 0:
+            self.status = self.status.split("_")[0] + "_idle"
+
     def move(self, dt):
 
         # Normalizing the vector
@@ -77,5 +81,6 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, dt):
         self.input()
+        self.get_status()
         self.move(dt)
         self.animate(dt)
